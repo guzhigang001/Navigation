@@ -1,0 +1,24 @@
+plugins {
+    id 'java-library'
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
+
+
+dependencies {
+    implementation fileTree(dir: 'libs', includes: ['*,jar'])
+
+    //自定义注解处理器相关依赖
+
+    //Json工具类
+    api 'com.alibaba:fastjson:1.2.59'
+    //让自定义处理器在编译时 能够被唤醒 能够执行
+    api 'com.google.auto.service:auto-service:1.0-rc6'
+    //添加我们定义的注解lib依赖
+    implementation project(path: ':nav_annotation')
+    annotationProcessor 'com.google.auto.service:auto-service:1.0-rc6'
+
+}
